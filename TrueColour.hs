@@ -3,14 +3,14 @@ module TrueColour where
 import Colour
 
 data TrueColour = TrueColour
-  { colour :: Colour,
+  { colour :: Colour Int,
     bg :: Bool
   }
 
-mkFgColour :: Colour -> TrueColour
+mkFgColour :: Colour Int -> TrueColour
 mkFgColour colour = TrueColour {colour, bg = False}
 
-mkBgColour :: Colour -> TrueColour
+mkBgColour :: Colour Int -> TrueColour
 mkBgColour colour = TrueColour {colour, bg = True}
 
 bgToStr :: Bool -> Int

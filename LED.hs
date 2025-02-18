@@ -1,13 +1,16 @@
 module LED where
 
-import Colour
+import Colour ( Colour (Colour) )
 
-type LED = Colour
+type LED = Colour Int
+
+mkLED :: Colour Int -> LED
+mkLED (Colour r g b) = LED (r g b)
 
 type LEDStrip = [LED]
 
 data VariableLED = VariableLED
-  { colour :: Colour,
+  { colour :: LED,
     opacity :: Float -- 0 : 1
   }
 

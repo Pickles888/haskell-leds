@@ -1,10 +1,16 @@
 module EmulateLED where
 
 import Colour
-import LED
-import TrueColour
+import LED ( LEDStrip, LED, VariableLED )
+import TrueColour ( mkBgColour, applyTrueColour )
 
 {- LED Stuff -}
 
-instance {-# OVERLAPS #-} Show LED where -- LED converted to TrueColour
-  show = applyTrueColour " " . mkBgColour
+instance Show LED where -- LED converted to TrueColour
+  show = applyTrueColour " " . mkBgColour 
+
+-- instance Show VariableLED where
+--   show (VariableLED {colour, opacity}) = 
+
+-- instance Show LEDStrip where
+--   show = mconcat . map (applyTrueColour " " . mkBgColour)
