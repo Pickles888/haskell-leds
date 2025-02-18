@@ -1,16 +1,18 @@
+{-# LANGUAGE RecordWildCards #-}
+
 module EmulateLED where
 
 import Colour
-import LED ( LEDStrip, LED, VariableLED )
-import TrueColour ( mkBgColour, applyTrueColour )
+import LED
+import TrueColour
 
 {- LED Stuff -}
 
 instance Show LED where -- LED converted to TrueColour
-  show = applyTrueColour " " . mkBgColour 
+  show (LED {..}) =
+    let tColour = mkBgColour ledColour
+     in if isOn then applyTrueColour " " tColour else " "
 
+{- TODO -}
 -- instance Show VariableLED where
---   show (VariableLED {colour, opacity}) = 
-
--- instance Show LEDStrip where
---   show = mconcat . map (applyTrueColour " " . mkBgColour)
+--  show (VariableLED {colour, opacity}) =

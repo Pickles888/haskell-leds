@@ -3,14 +3,14 @@ module TrueColour where
 import Colour
 
 data TrueColour = TrueColour
-  { colour :: Colour Int,
+  { colour :: Colour,
     bg :: Bool
   }
 
-mkFgColour :: Colour Int -> TrueColour
+mkFgColour :: Colour -> TrueColour
 mkFgColour colour = TrueColour {colour, bg = False}
 
-mkBgColour :: Colour Int -> TrueColour
+mkBgColour :: Colour -> TrueColour
 mkBgColour colour = TrueColour {colour, bg = True}
 
 bgToStr :: Bool -> Int
@@ -18,7 +18,7 @@ bgToStr True = 48
 bgToStr False = 38
 
 applyTrueColour :: String -> TrueColour -> String
-applyTrueColour s (TrueColour {colour = colour, bg = bg}) =
+applyTrueColour str (TrueColour {colour = colour, bg = bg}) =
   let red = getRed colour
       green = getGreen colour
       blue = getBlue colour
@@ -31,5 +31,7 @@ applyTrueColour s (TrueColour {colour = colour, bg = bg}) =
           show green,
           ";",
           show blue,
-          "m"
+          "m",
+          str,
+          "\x1b[0m"
         ]

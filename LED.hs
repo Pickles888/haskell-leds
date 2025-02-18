@@ -1,17 +1,26 @@
 module LED where
 
-import Colour ( Colour (Colour) )
+import Colour
 
-type LED = Colour Int
+data LED = LED -- On/Off LED
+  { ledColour :: Colour,
+    isOn :: Bool
+  }
 
-mkLED :: Colour Int -> LED
-mkLED (Colour r g b) = LED (r g b)
+getColour :: LED -> Colour
+getColour (LED {ledColour}) = ledColour
+
+mkOnLED :: Colour -> LED
+mkOnLED ledColour = LED {ledColour, isOn = True}
 
 type LEDStrip = [LED]
 
-data VariableLED = VariableLED
-  { colour :: LED,
+data VLED = VLED -- Variable LED
+  { vLEDColour :: Colour,
     opacity :: Float -- 0 : 1
   }
 
-type VariableLEDStrip = [VariableLED]
+mkVariableLED :: Colour -> Float -> VLED
+mkVariableLED colour opacity = VLED {vLEDColour = colour, opacity}
+
+type VLEDStrip = [VLED]
