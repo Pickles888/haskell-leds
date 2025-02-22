@@ -1,6 +1,6 @@
-module LED where
+module LEDHaskell.LEDs.LED where
 
-import Colour
+import LEDHaskell.Colour.Colour
 
 data LED = LED -- On/Off LED
   { ledColour :: Colour,
@@ -12,6 +12,9 @@ getColour (LED {ledColour}) = ledColour
 
 mkOnLED :: Colour -> LED
 mkOnLED ledColour = LED {ledColour, isOn = True}
+
+mapLEDColour :: (Colour -> Colour) -> LED -> LED
+mapLEDColour f (LED {isOn, ledColour = colour}) = LED {isOn, ledColour = f colour}
 
 type LEDStrip = [LED]
 

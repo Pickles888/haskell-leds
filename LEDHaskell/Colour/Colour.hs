@@ -1,6 +1,14 @@
-module Colour where
+module LEDHaskell.Colour.Colour where
+
+import LEDHaskell.Lib.Helpers
 
 data Colour = Colour Int Int Int
+
+clampToColour :: Int -> Int
+clampToColour = clamp 0 255
+
+clampColour :: Colour -> Colour
+clampColour (Colour r g b) = Colour (clampToColour r) (clampToColour g) (clampToColour b)
 
 getRed :: Colour -> Int
 getRed (Colour r _ _) = r

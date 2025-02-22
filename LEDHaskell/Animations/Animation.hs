@@ -1,7 +1,6 @@
-module Animation where
+module LEDHaskell.Animations.Animation where
 
-import EmulateLED
-import LED
+import LEDHaskell.LEDs.LED
 
 class Animation a where
   update :: a -> LEDStrip -> LEDStrip

@@ -1,6 +1,6 @@
-module TrueColour where
+module LEDHaskell.Colour.TrueColour where
 
-import Colour
+import LEDHaskell.Colour.Colour
 
 data TrueColour = TrueColour
   { colour :: Colour,
